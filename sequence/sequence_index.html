@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  /*.containers
+  {
+    min-height: 600px;
+  }
+
+  .container-fluid
+  {
+    display: none;
+  }*/
+  .splash
+  {
+    min-height: 300px;
+   background-color:#87CEFA;
+   margin-left: 30%;
+   margin-right: 30%;
+  }
+   .play_buttons {
+            background: #e74c3c;
+            border: 2px solid #e74c3c;
+            color: #fff;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 11%;
+            padding: 5px 10px;
+        }
+        .game
+        {
+          display: none;
+        }
+  .test
+  {
+    margin: 2px;
+   min-height: 300px;
+    background-color:#87CEFA;
+  }
+  .test1
+  {
+    margin: 2px;
+   min-height: 100px;
+    
+  }
+   .test2
+  {
+    margin: 2px;
+   min-height: 50px;
+    background-color:#ffffff;
+    color:#1E90FF;
+
+  font-family: sans-serif;
+  font-size: 30px;
+  }
+  .divs
+  {
+    
+    min-height: 95px;
+    width: 30%;
+    background-color: #87CEFA;
+    display: inline-block;
+    position: relative;
+    font-family: sans-serif;
+  font-size: 65px;
+  text-align: center;
+
+  }
+  .slides
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color:#1E90FF;
+  left: 1%;
+  top: 1%;
+}
+  #div1
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div2
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div3
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+
+   #div4
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div5
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div6
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div7
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div8
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+    #div9
+  {
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  #restart_div
+{
+  position: absolute;
+  height: 90%;
+  width: 100%;
+  background-color:transparent;
+  color: white;
+  font-family: sans-serif;
+  font-size: 40px;
+  text-align: center;
+  display: none;
+}
+#restart 
+{
+  border: none;
+  padding: 25px;
+  color: white;
+  background-color: #8a64ff;
+  font-size: 30px;
+  margin-top: 25%;
+}
+ #restart_div1
+{
+  position: absolute;
+  height: 90%;
+  width: 100%;
+  background-color:transparent;
+  color: black;
+  font-family: sans-serif;
+  font-size: 40px;
+  text-align: center;
+  display: none;
+}
+#restart1
+{
+  width: 30%;
+  height: 30%;
+  border: none;
+  padding: 25px;
+  color: black;
+  background-color: white;
+  font-size: 30px;
+  margin-top: 25%;
+}
+
+#times_tag
+{
+  
+  position: absolute;
+  width: 5%;
+  height: 5%;
+  color:  #1E90FF;
+  font-family: sans-serif;
+  font-size: 30px;
+
+}
+.preload 
+  {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+
+    background-color: rgba(0,0,0,0.5);
+
+  }
+  .preload1
+  {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+
+    background-color: rgba(0,0,0,0.5);
+  }
+  @media screen and (max-width:770px)
+  {
+    .splash
+    {
+      width: 100%;
+      margin-left:0%;
+      min-height: 400px;
+    }
+    .play_buttons
+    {
+      margin-top: 50%;
+    }
+  }
+ 
+  </style>
+
+
+<script>
+
+$(function()
+{
+
+  var restart_div=$('#restart_div');
+  var restart_btn=$('#restart');
+  var restart_btn1=$('#restart1');
+    var time_tag=$("#times_tag");
+
+    var restart_div1=$('#restart_div1');
+
+  var no=0;
+  var sequencno=0;
+  var times=36;
+  var intervalTime;
+
+    var myArray = [1,2,3,4,5,6,7,8,9];
+    shuffle(myArray);
+
+    $('.play_buttons').click(function()
+      {
+         intervalTime=setInterval(timestart,1000);
+        $(".splash").hide();
+        $(".game").show();
+       
+        //$(".container-fluid").;
+      });
+
+    function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+}
+
+  var click_count=0;
+  
+
+      
+  
+
+  $('#div1').html(myArray[0]+ '<div id="div_1" class="slides"></div>');
+  $('#div2').html(myArray[1]+ '<div id="div_2" class="slides"></div>');
+  $('#div3').html(myArray[2]+ '<div id="div_3" class="slides"></div>');
+  $('#div4').html(myArray[3]+ '<div id="div_4" class="slides"></div>');
+  $('#div5').html(myArray[4]+ '<div id="div_5" class="slides"></div>');
+  $('#div6').html(myArray[5]+ '<div id="div_6" class="slides"></div>');
+  $('#div7').html(myArray[6]+ '<div id="div_7" class="slides"></div>');
+  $('#div8').html(myArray[7]+ '<div id="div_8" class="slides"></div>');
+  $('#div9').html(myArray[8]+ '<div id="div_9" class="slides"></div>');
+  
+
+  $("#div1").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div1').text();
+      $("#div_1").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+          //alert($('#div1').html());
+        });
+      
+      
+      
+    });
+
+
+  $("#div2").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div2').text();
+      $("#div_2").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+  $("#div3").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div3').text();
+      $("#div_3").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+  $("#div4").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div4').text();
+      $("#div_4").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+  $("#div5").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div5').text();
+      $("#div_5").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+  $("#div6").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div6').text();
+      $("#div_6").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+
+  $("#div7").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div7').text();
+      $("#div_7").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+
+  $("#div8").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div8').text();
+      $("#div_8").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+
+  $("#div9").click(function()
+    {
+      sequencno++;
+      times--;
+      no=$('#div9').text();
+      $("#div_9").slideUp("slow",function()
+        {
+          if(sequencno!=no)
+          {
+            slidedown();
+          }
+          else
+          {
+            check();
+          }
+        });
+      //slidedown();
+    });
+
+  check=function()
+  {
+    if(sequencno==9)
+    {
+      $(".preload").show();
+      $(".preload1").show();
+      restart_div.slideDown();
+      restart_div1.slideDown();
+      restart_btn.html("Awesome!!!");
+      restart_btn1.html("Awesome!!!");
+              restart_btn.focus();
+              restart_btn1.focus();
+    }
+  }
+
+
+    slidedown=function()
+    {
+      $("#div_1").slideDown("slow");
+      $("#div_2").slideDown("slow");
+      $("#div_3").slideDown("slow");
+      $("#div_4").slideDown("slow");
+      $("#div_5").slideDown("slow");
+      $("#div_6").slideDown("slow");
+      $("#div_7").slideDown("slow");
+      $("#div_8").slideDown("slow");
+      $("#div_9").slideDown("slow");
+
+      sequencno=0;
+
+    }
+
+     restart_btn.click(function()
+      {
+        location.reload();
+      });
+     restart_btn1.click(function()
+      {
+        location.reload();
+      });
+
+     
+     // intervalTime=setInterval(timestart,1000);
+     
+
+
+     function timestart()
+     {
+      times--;
+        time_tag.text(times);
+        if( times<=0)
+      {
+        $(".preload").show();
+        $(".preload1").show();
+        restart_div.slideDown();
+        restart_div1.slideDown();
+        restart_btn.html("Time up..");
+                restart_btn.focus();
+                 restart_btn1.html("Time up..");
+                restart_btn1.focus();
+                clearInterval(intervalTime);
+      }
+      
+    
+      
+     }
+
+});
+
+</script>
+
+
+
+
+</head>
+<body>
+<!--   <div class="containers" style="background-color:yellow;">
+    <button>button</button> -->
+
+<div class="splash">
+
+      <p>
+                <!-- <p>
+                    <strong>Pick the correct answer for the color of the word!</strong>
+                </p> -->
+                <center>
+                <button class="play_buttons">Play</button></center>
+                
+            </p>
+            </div>
+
+            <div class="game">
+
+<div class="container-fluid">
+  
+ <div class="row">
+
+  <!--first div is here-->
+  <div class="col-md-4">
+    <div class="test2"><div id="times_tag">36</div>
+    
+
+   </div> 
+    </div>
+     <!--second div is here-->
+    <div class="col-md-4">
+
+      
+ 
+       <div class="test">
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="test1">
+             <div class="divs" id="div1">6<div id="div_1" class="slides"></div></div>
+              <div class="divs" id="div2">4<div id="div_2" class="slides"></div></div>
+             <div class="divs" id="div3">8<div id="div_3" class="slides"></div></div>
+           
+            </div>
+          </div>
+
+        </div>
+
+          <div class="row">
+
+          <div class="col-md-12">
+            <div class="test1">
+
+               <div class="divs" id="div4">2<div id="div_4" class="slides"></div></div>
+              <div class="divs" id="div5">9<div id="div_5" class="slides"></div></div>
+             <div class="divs" id="div6">1<div id="div_6" class="slides"></div></div>
+
+            </div>
+          </div>
+
+        </div>
+
+          <div class="row">
+
+          <div class="col-md-12">
+            <div class="test1">
+
+            <div class="divs" id="div7">5<div id="div_7" class="slides"></div></div>
+              <div class="divs" id="div8">3<div id="div_8" class="slides"></div></div>
+             <div class="divs" id="div9">7<div id="div_9" class="slides"></div></div>
+            </div>
+          </div>
+
+        </div>
+
+       </div>
+      <!--  <div class="preload">
+       <div id="restart_div">
+        <button id="restart"></button>
+      </div>
+    </div>  -->
+
+     <div class="preload1">
+        <div id="restart_div1">
+        <button id="restart1"></button>
+      </div> 
+    </div> 
+
+  
+
+    </div>
+     <!--third div is here-->
+    <div class="col-md-4">
+    <div class="test2"></div>
+  </div>
+
+ </div>
+
+</div>
+</div>
+
+<!-- </div> -->
+</body>
+</html>
